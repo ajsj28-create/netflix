@@ -1,0 +1,174 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root{
+	--pri-color: #e50914;
+	--pri-color-dark: #d02830;
+	--sec-color: #34373b;
+	--sec-color-dark: #1a1d21;
+	--white-color: #ffffff;
+}
+
+body{
+	font-family: "Roboto", sans-serif;
+	position: relative;
+	min-height: 100vh;
+}
+
+body::before{
+	content: '';
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* filter: blur(2px); */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-image: linear-gradient(
+		360deg, 
+		rgba(0, 0, 0, 0.9000) 0.000%, 
+		rgba(0, 0, 0, 0.8965) 8.500%, 
+		rgba(0, 0, 0, 0.8861) 17.00%, 
+		rgba(0, 0, 0, 0.8688) 25.50%, 
+		rgba(0, 0, 0, 0.8444) 34.00%, 
+		rgba(0, 0, 0, 0.8132) 42.50%, 
+		rgba(0, 0, 0, 0.7750) 51.00%, 
+		rgba(0, 0, 0, 0.7368) 59.50%, 
+		rgba(0, 0, 0, 0.7056) 68.00%, 
+		rgba(0, 0, 0, 0.6813) 76.50%, 
+		rgba(0, 0, 0, 0.6639) 85.00%, 
+		rgba(0, 0, 0, 0.8035) 93.50%, 
+		rgba(0, 0, 0, 1.0000) 102.0%
+		),
+		url(https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg);
+}
+
+.logo svg{
+	height: 40px;
+}
+
+.priBtn, .secBtn{
+	font-size: 16px;
+	color: var(--white-color);
+	transition: all 0.3s ease-in-out;
+}
+
+.priBtn{
+	background-color: var(--pri-color);
+}
+
+.secBtn{
+	background-color: var(--sec-color);
+}
+
+.priBtn:is(:hover, :active, :focus){
+	color: var(--white-color);
+	background-color: var(--pri-color-dark);
+}
+
+.secBtn:is(:hover, :active, :focus){
+	color: var(--white-color);
+	background-color: var(--sec-color-dark);
+}
+
+.backDrop{
+	position: fixed;
+	height: 100vh;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+
+.movieModal{
+	position: fixed;
+	top: 15%;
+	width: 50%;
+	left: 25%;
+	display: none;
+}
+
+.backDrop.active, .movieModal.active{
+	display: block;
+}
+
+.backDrop.active{
+	animation: fadeIn 0.4s ease-in;
+}
+
+.movieModal.active{
+	animation: showModal 0.4s ease-out;
+}
+
+@keyframes fadeIn{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@keyframes showModal{
+	0%{
+		transform: translateY(-15px);
+	}
+	100%{
+		transform: translateY(0);
+	}
+}
+
+.movieCard{
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content{
+	height: 250px;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.content img{
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.content .caption{
+	position: absolute;
+	top: 20%;
+	left: 0;
+	height: 80%;
+	overflow-y: auto;
+	background-color: rgba(0, 0, 0, 0.8);
+	transform: translateY(100%);
+	transition: all 0.4s ease-in-out;
+}
+
+.card-body:hover .caption{
+	transform: translateY(0);
+}
+
+.card-body{
+	cursor: pointer;
+}
+
+.badge{
+	font-size: 20px;
+	transform: translateY(-5px);
+}
+
+.movieCard h4{
+	height: 40px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
